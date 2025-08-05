@@ -1,73 +1,35 @@
-# Todo App
+# Todo App – Technical & Functional Specification
 
-A simple todo app using vanilla javascript. This repo is used for teaching in Javascript course.
+## 1. Overview / Purpose  
+A lightweight Todo App that enables users to **add, edit, delete, toggle, and filter** tasks, with data **persisted via localStorage**. The app will work in modern browsers and support mobile-first responsive design.
 
-- Render todo list 
-- Add a new todo 
-- Update a todo 
-- Remove a todo 
-- Search todo 
+## 2. User Stories & Acceptance Criteria  
+Using the standard template: *As a user, I want … so that …*
 
+- **As a user**, I want to add a new task so that I can track things I need to do.  
+  - Acceptance: When I type a task name and click "Add", it appears in the list and saves to localStorage.
+  
+- **As a user**, I want to edit an existing task so that I can correct mistakes or adjust tasks.  
+  - Acceptance: Clicking an edit icon replaces the task with an input field, and changes are saved and persisted.
 
-1. Comment the script `sample-solution.js` in `index.html`
-2. Implement logic in `main.js` to make the todo app works.
+- **As a user**, I want to mark tasks as completed so that I can distinguish between done and undone tasks.  
+  - Acceptance: Clicking a checkbox toggles task strike-through and status, and this persists across reloads.
 
-Demo: https://paulnguyen-mn.github.io/js-todo-app/
+- **As a user**, I want to delete a task so unwanted items can be removed from my list.  
+  - Acceptance: Clicking delete removes the task and updates localStorage.
 
-## Render todo list 
+- **As a user**, I want to filter tasks by All / Active / Completed so I can easily manage my workflow.  
+  - Acceptance: Filter buttons update the view and maintain filter selection on page refresh.
 
-- Given a list of todos as below:
+## 3. Non-Functional Requirements  
+- The app must be **responsive**, adapting to mobile screens (<600px) using CSS Flexbox or Grid.  
+- UI should remain **fast**, even with hundreds of tasks (i.e. minimal DOM updates).  
+- Must work **offline** using localStorage, without network dependencies.  
+- Clean, semantic markup with accessibility in mind (meaningful buttons, ARIA labels where needed).
 
-```js
-const todoList = [
-  {
-    id: 1,
-    title: 'Learn JS NEW',
-  },
-  {
-    id: 2,
-    title: 'Code JS NEW',
-  }
-];
-```
-
-TODO: Convert this todo list to list of `li` which is cloned from `todoItemTemplate` element. Then append to `ul#todoList` element.
-
-## Add a new todo 
-
-- Handle todo form submit.
-- Build a new todo with title retrieved from user input.
-- Append to todo list.
-
-## Edit a todo 
-
-- Fill form values on Edit button click.
-- On form edit submit, update the new value to the corresponding todo item.
-
-## Remove a todo 
-
-- Show a confirmation to ask if user wants to process or not?
-- If yes:
-  - Remove the todo from the todo list (javascript variable)
-  - Remove the li element from ul (dom)
-
-
-## Search a todo
-
-- Add a new form which is similar to add/edit form having one text field control.
-- When user change the value of the text fields:
-  - Search and filter out the todo list whose title contains the search term.
-
-Eg: 
-- We have a list of todo: 'Learn JS', 'Study JS'
-- If you input `js` --> show the two todos.
-- If you input `learn` --> show only the first one.
-
-
-## Refs 
-
-- Somw useful function: https://gist.github.com/paulnguyen-mn/3f7ef03a31c5e3fad19ac1a5cf7dd708
-- Part 2 of this tutorial: https://javascript.info/
-
-
-HAPPY CODING! :heart_eyes:
+## 4. Data Flow & Storage  
+- Tasks are stored in localStorage as an array of objects:  
+  ```json
+  [
+    { id: "uuid", text: "Do laundry", completed: false }
+  ]
